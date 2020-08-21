@@ -93,3 +93,47 @@ https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machine
 ...
 
 ```
+
+
+## Share files
+```Bash
+sudo apt update
+sudo apt install samba
+
+mkdir /home/<username>/sambashare/
+
+```
+
+Edit **/etc/samba/smb.conf**
+```
+[sambashare]
+    comment = Samba on Ubuntu
+    path = /home/username/sambashare
+    read only = no
+    browsable = yes
+```
+
+**Restart samba**
+```
+sudo service smbd restart
+sudo ufw allow samba
+```
+
+**Setting passwords**
+```
+sudo smbpasswd -a username	
+```
+
+**On windows**
+```
+\\ip-address\sambashare
+```
+
+**Support symblic link in Samba**
+
+Edit **/etc/samba/smb.conf** in **global** section
+```
+follow symlinks = yes
+wide links = yes
+unix extensions = no
+```
