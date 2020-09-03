@@ -38,3 +38,12 @@ If have cloned project, to set up submodules, use this command:
 ```bash
 git submodule --init --recursive
 ```
+
+### Working on a submodule
+```bash
+# Git submodule's HEAD will not point to any branch.
+git checkout [branch name]
+
+# After modification, merge with remote update
+git submodule update --remote --merge/--rebase
+```
